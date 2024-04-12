@@ -19,6 +19,8 @@ class Bilan:
     def __init__(self, nom_cours, etudiants):
         self.nom_cours = nom_cours
         self.etudiants = etudiants
+        self.moyenne = self.__calculer_moyenne()
+        self.taux_succes =
 
     def nombre_reussis(self):
         return sum(1 for etudiant in self.etudiants if etudiant.a_reussi)
