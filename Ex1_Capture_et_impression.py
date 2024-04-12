@@ -6,17 +6,21 @@
 import os
 os.chdir(os.path.dirname(__file__))
 
-os.chdir("csvs")
+os.chdir("VIDEOS")
 
 for fichier in os.listdir():
-    nom_fichier, ext = os.path.splitext(fichier)
-    titre, cours, num = nom_fichier.split()
-    titre = titre.strip()
-    cours = cours.strip()
+    try:
 
-    num = num.strip()
-    num = num[1:]   # retire le dièse juste avant le numéro de cours
-    num = num.zfill(2) # rajoute des 0 avec le numéro de cours pour obtenir un num de 2 caractères
+        nom_fichier, ext = os.path.splitext(fichier)
+        titre, cours, num = nom_fichier.split("_")
+        titre = titre.strip()
+        cours = cours.strip()
 
-    nouveau_nom = f"{num} {cours} {titre}{ext}"
-    os.rename(fichier, nouveau_nom)
+        num = num.strip()
+        num = num[1:]   # retire le dièse juste avant le numéro de cours
+        num = num.zfill(2) # rajoute des 0 avec le numéro de cours pour obtenir un num de 2 caractères
+
+        nouveau_nom = f"{num} {cours} {titre}{ext}"
+        os.rename(fichier, nouveau_nom)
+    except Exception as  e :
+        print(f"Impossible de renommer le fichier {fichier}.")    
